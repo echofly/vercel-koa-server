@@ -72,7 +72,7 @@ router.post('/chat', ctx => {
       sseStream.end()
       clearInterval(time)
     }
-  }, 300);
+  }, 600);
 })
 
 app.listen(port, () => {
