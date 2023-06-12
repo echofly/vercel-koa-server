@@ -33,9 +33,9 @@ router.post('/message', async ctx => {
   const { messages } = ctx.request.body;
   const openai = new OpenAIApi(configuration);
   const response = await openai.createChatCompletion({
-    model: 'gpt-4',
+    model: 'gpt-3.5-turbo',
     messages: messages,
-    max_tokens: 6000,
+    max_tokens: 4000,
     temperature: 0.9,
     // 是否以流的方式输出给客户端
     // stream: true,
