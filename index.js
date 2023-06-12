@@ -60,13 +60,15 @@ router.post('/chat', ctx => {
   ctx.body = sseStream
   console.log(messages)
 
+  const content = messages?.[0]?.content || '你未输入内容'
+
   let step = 0;
   // 定时器依次返回message
   const time = setInterval(() => {
-    const data = { message: messages[0].content[step++] };
+    const data = { message: content[step++] };
     // 每个消息以 \n\n分割
     sseStream.write(`data: ${JSON.stringify(data)}\n\n`);
-    if (step > messages[0].content.length - 1) {
+    if (step > content.length - 1) {
       sseStream.end()
       clearInterval(time)
     }
